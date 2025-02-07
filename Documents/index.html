@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Certificates</title>
+
+    <style>
+        /* General styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #f8f9fa, #e3f2fd);
+            color: #333;
+        }
+
+        /* Heading */
+        h1 {
+            margin-top: 20px;
+            color: #007BFF;
+            font-size: 2.5rem;
+        }
+
+        /* Certificate Gallery Container */
+        .certificate-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Certificate Image Styling */
+        .certificate-img {
+            width: 280px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border: 5px solid white;
+        }
+
+        /* Hover Effect */
+        .certificate-img:hover {
+            transform: scale(1.07);
+            box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Lightbox (Popup) */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Enlarged Image */
+        .lightbox img {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 10px;
+            box-shadow: 4px 4px 20px rgba(255, 255, 255, 0.5);
+            border: 5px solid white;
+        }
+
+        /* Close Button */
+        .lightbox:after {
+            content: "×";
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* About Me Section */
+        .about-me {
+            margin: 40px auto;
+            max-width: 800px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+            text-align: left;
+        }
+
+        .about-me h2 {
+            color: #007BFF;
+            text-align: center;
+        }
+
+        .about-me p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Certificates</h1>
+    <div class="certificate-gallery" id="certificateGallery"></div>
+
+    <!-- Lightbox (Popup) -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <img id="lightboxImage" src="" alt="Certificate">
+    </div>
+
+    <!-- About Me Section -->
+    <div class="about-me">
+        <h2>About Me</h2>
+        <p>
+            Hi, I'm <b>Sohan Hazra</b>, a passionate and dedicated learner striving to excel in technology and development. 
+            These certificates represent not just achievements, but **hours of hard work, persistence, and the will to never give up**. 
+        </p>
+        <p>
+            Every certificate here is proof of the effort, discipline, and late-night coding sessions that shaped my journey.
+            I believe in continuous learning, and this is just the beginning!
+        </p>
+    </div>
+
+    <script>
+        // List of certificate image names
+        const certificateImages = [
+            "img1.jpg",
+            "img2.jpg",
+            "img3.jpg",
+            "img4.jpg",
+            "img5.jpg"
+        ];
+
+        const galleryDiv = document.getElementById("certificateGallery");
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImage = document.getElementById("lightboxImage");
+
+        // Function to open lightbox
+        function openLightbox(imgSrc) {
+            lightboxImage.src = imgSrc;
+            lightbox.style.display = "flex";
+        }
+
+        // Function to close lightbox
+        function closeLightbox() {
+            lightbox.style.display = "none";
+        }
+
+        // Close lightbox when ESC key is pressed
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                closeLightbox();
+            }
+        });
+
+        // Loop through images and add them to the gallery
+        certificateImages.forEach(img => {
+            const imgElement = document.createElement("img");
+            imgElement.src = img;
+            imgElement.alt = "Certificate";
+            imgElement.className = "certificate-img";
+            imgElement.onclick = () => openLightbox(img);
+            galleryDiv.appendChild(imgElement);
+        });
+    </script>
+</body>
+</html>
